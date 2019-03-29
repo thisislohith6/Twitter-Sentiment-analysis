@@ -3,6 +3,7 @@ import datetime
 import sys,tweepy,csv,re
 from textblob import TextBlob
 import matplotlib.pyplot as plt
+import string
 
 
 class SentimentAnalysis:
@@ -25,20 +26,14 @@ class SentimentAnalysis:
         searchTerm = input("Enter Keyword/Tag to search about: ")
         NoOfTerms = int(input("Enter how many tweets to search: "))
 
-        #start_date = datetime.datetime(2019, 3, 10, 12, 00, 00)
-        #end_date = datetime.datetime(2019, 3, 19, 13, 00, 00)
-
         # searching for tweets
         self.tweets = tweepy.Cursor(api.search, q=searchTerm, lang = "en").items(NoOfTerms)
-        #self.tweets = tweepy.Cursor(api.search, q=searchTerm, lang = "en",since = "2019-03-17",until = "2019-03-18").items()
 
         # Open/create a file to append data to
-        csvFile = open('New Text Document.txt', 'a')
+        csvFile = open('C:/Users/SYED TASLEEM/Desktop/p.txt', 'a')
 
         # Use csv writer
         csvWriter = csv.writer(csvFile)
-        # start_date = datetime.datetime(2019, 3, 10, 12, 00, 00)
-        # end_date = datetime.datetime(2019, 3, 19, 13, 00, 00)
 
         # creating some variables to store info
         polarity = 0
@@ -57,7 +52,7 @@ class SentimentAnalysis:
             self.tweetText.append(self.cleanTweet(tweet.text).encode('utf-8'))
             print (tweet.text)    #print tweet's text
             analysis = TextBlob(tweet.text)
-            print(analysis.sentiment)  # print tweet's polarity
+            #print(analysis.sentiment)  # print tweet's polarity
             polarity += analysis.sentiment.polarity  # adding up polarities to find the average later
 
             if (analysis.sentiment.polarity == 0):  # adding reaction of how people are reacting to find average later
@@ -100,7 +95,7 @@ class SentimentAnalysis:
         if (polarity == 0):
             print("Neutral")
         elif (polarity > 0 and polarity <= 0.3):
-            print("Weakly Positive")
+            print("Weakly P")
         elif (polarity > 0.3 and polarity <= 0.6):
             print("Positive")
         elif (polarity > 0.6 and polarity <= 1):
@@ -122,30 +117,34 @@ class SentimentAnalysis:
         print(str(snegative) + "% people thought it was strongly negative")
         print(str(neutral) + "% people thought it was neutral")
 
-        self.plotPieChart(positive, wpositive, spositive, negative, wnegative, snegative, neutral, searchTerm, NoOfTerms)
-
 
     def cleanTweet(self, tweet):
         # Remove Links, Special Characters etc from tweet
-        return ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t]) | (\w +:\ / \ / \S +)", " ", tweet).split())
+        #return ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t]) | (\w +:\ / \ / \S +)", " ", tweet).split())
+
+        # remove old style retweet text "RT"
+        tweet = re.sub(r'^RT[\s]+', '', tweet)
+
+        # remove hyperlinks
+        tweet = re.sub(r'https?://[A-Za-z0-9./]+', '', tweet)
+
+        # remove hashtags
+        # only removing the hash # sign from the word
+        tweet = re.sub(r'#', '', tweet)
+
+        # remove mentions
+        tweet = re.sub(r'@[A-Za-z0-9]+', '', tweet)
+
+        # remove punctuations like quote, exclamation sign, etc.
+        # we replace them with a space
+        tweet = re.sub(r'[' + string.punctuation + ']+', ' ', tweet)
+
+        return tweet
 
     # function to calculate percentage
     def percentage(self, part, whole):
         temp = 100 * float(part) / float(whole)
         return format(temp, '.2f')
-
-    def plotPieChart(self, positive, wpositive, spositive, negative, wnegative, snegative, neutral, searchTerm, noOfSearchTerms):
-        labels = ['Positive [' + str(positive) + '%]', 'Weakly Positive [' + str(wpositive) + '%]','Strongly Positive [' + str(spositive) + '%]', 'Neutral [' + str(neutral) + '%]',
-                  'Negative [' + str(negative) + '%]', 'Weakly Negative [' + str(wnegative) + '%]', 'Strongly Negative [' + str(snegative) + '%]']
-        sizes = [positive, wpositive, spositive, neutral, negative, wnegative, snegative]
-        colors = ['yellowgreen','lightgreen','darkgreen', 'gold', 'red','lightsalmon','darkred']
-        patches, texts = plt.pie(sizes, colors=colors, startangle=90)
-        plt.legend(patches, labels, loc="best")
-        plt.title('How people are reacting on ' + searchTerm + ' by analyzing ' + str(noOfSearchTerms) + ' Tweets.')
-        plt.axis('equal')
-        plt.tight_layout()
-        plt.show()
-
 
 
 if __name__== "__main__":

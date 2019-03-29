@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Tweet Sentiment to CSV</title>
+	<title>Tweet Sentiment Analysis For Election Results</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -12,8 +12,8 @@
 <body>
 	<div class='container-fluid'>
 		<div class='text-center'>
-			<h1>Tweet Sentiment to CSV</h1>
-			<h5>Search for Tweets and download the data labeled with it's Polarity in CSV format</h5>
+			<h1>Tweet Sentiment Analysis For Election Results</h1>
+			<h5>Search for election tweets and download the data labeled with it's Polarity in CSV format</h5>
 
 			<div id="search_box" class="container-fluid">
 				<input type="text" id="query">
@@ -26,7 +26,7 @@
 		</div>
 		<div id="tweets"></div>
 		<footer class="text-center">
-			Made with ❤ | <a href="https://github.com/rhnvrm/labeled-tweet-generator">Github</a> | <a href="https://github.com/thisislohith6/Twitter-Sentiment-analysis">NIIT</a>
+			Made with &#10084; | <a href="https://github.com/thisislohith6/Twitter-Sentiment-analysis">GITHUB</a>
 		</footer>	</div>
 	<script type="text/javascript">
 	 var current_data;
