@@ -30,7 +30,7 @@ class SentimentAnalysis:
         self.tweets = tweepy.Cursor(api.search, q=searchTerm, lang = "en").items(NoOfTerms)
 
         # Open/create a file to append data to
-        csvFile = open('C:/Users/SYED TASLEEM/Desktop/p.txt', 'a')
+        csvFile = open('C:/Users/Desu.Lohith/Desktop/tweets.csv', 'a')
 
         # Use csv writer
         csvWriter = csv.writer(csvFile)
