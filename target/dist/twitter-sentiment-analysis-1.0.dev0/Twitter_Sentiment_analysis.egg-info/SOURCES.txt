@@ -1,0 +1,8 @@
+Sentiment.py
+setup.py
+Twitter_Sentiment_analysis.egg-info/PKG-INFO
+Twitter_Sentiment_analysis.egg-info/SOURCES.txt
+Twitter_Sentiment_analysis.egg-info/dependency_links.txt
+Twitter_Sentiment_analysis.egg-info/namespace_packages.txt
+Twitter_Sentiment_analysis.egg-info/top_level.txt
+Twitter_Sentiment_analysis.egg-info/zip-safe
