@@ -1,10 +1,13 @@
-from alpine:latest
+FROM python:3.6
+MAINTAINER Lohith
 
-RUN apk add --no-cache python3-dev \
-		&& pip3 install --upgrade pip
+ENV PYTHONUNBUFFERED 1
 
+COPY ./requirements.txt /requirements.txt
+RUN pip install -r /requirements.txt
+
+RUN mkdir /app
 WORKDIR /app
+COPY ./app /app
 
-COPY . /app
 
-RUN pip3 --no-cache-dir install -r requirements.txt
