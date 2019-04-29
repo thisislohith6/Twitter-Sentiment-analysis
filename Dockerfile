@@ -1,13 +1,16 @@
-FROM python:3.6
-MAINTAINER Lohith
+FROM alpine:latest
 
-ENV PYTHONUNBUFFERED 1
+# Install python and pip
+RUN apk add python3
+RUN apk add py3-cryptography
+RUN apk add curl 
+RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+RUN python3 get-pip.py
 
-COPY ./requirements.txt /requirements.txt
-RUN pip install -r /requirements.txt
+COPY . /usr/src/app/
+RUN pip install --no-cache-dir -r /usr/src/app/requirements.txt
 
-RUN mkdir /app
-WORKDIR /app
-COPY ./app /app
+EXPOSE 5000
 
-
+CMD ["python3", "/usr/src/app/main.py"]
+CMD ["python3", "/usr/src/app/test.py"]
