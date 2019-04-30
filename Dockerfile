@@ -13,4 +13,4 @@ RUN pip install --no-cache-dir -r /usr/src/app/requirements.txt
 EXPOSE 5000
 
 CMD ["python3", "/usr/src/app/main.py"]
-CMD ["python3", "/usr/src/app/test.py"]
+CMD ["python3", "/usr/src/app/test_main.py"]
