@@ -6,3 +6,13 @@ delete container -- docker rm containername
 create tar -- docker save -o C:\Users\Desu.Lohith\Desktop\myImage.tar lohithdesu/twitter
 load tar -- docker load -i myImage.tar
 run -- docker run -p 3000:5000 lohithdesu/twitter
+
+Jenkins command
+
+cd\
+cd Users\Desu.Lohith\PycharmProjects\Twitter-Sentiment-analysis\
+path="C:\Users\Desu.Lohith\PycharmProjects\Twitter-Sentiment-analysis\venv\Scripts\pyb.exe" C:\Users\Desu.Lohith\PycharmProjects\Twitter-Sentiment-analysis\pyb
+cd C:\Users\Desu.Lohith\PycharmProjects\Twitter-Sentiment-analysis\
+"C:\Program Files\Docker\Docker\resources\bin\docker.exe" build -t lohithdesu/twitter:latest .
+"C:\Program Files\Docker\Docker\resources\bin\docker.exe" images
+
