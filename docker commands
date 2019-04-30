@@ -1,0 +1,8 @@
+create & build -- docker build -t lohithdesu/twitter . -f Dockerfile
+push -- docker push lohithdesu/twitter:latest
+pull -- docker pull lohithdesu/twitter:latest
+delete image -- docker rmi lohithdesu/twitter
+delete container -- docker rm containername
+create tar -- docker save -o C:\Users\Desu.Lohith\Desktop\myImage.tar lohithdesu/twitter
+load tar -- docker load -i myImage.tar
+run -- docker run -p 3000:5000 lohithdesu/twitter
