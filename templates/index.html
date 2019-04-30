@@ -24,6 +24,7 @@
 				<input type="text" id="query">
 				<button class="button button1" id="search">Search</button>
 				<button class="button button2" id="getcsv">Download CSV</button>
+				<div id="loading">Loading...</div>
 				<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 
 			</div>
@@ -65,6 +66,7 @@ https://www.niituniversity.in/"><b>NIIT</b></a>
                     contents+='</div>';
 			        container.html(contents);
 			        $('#query').val(querystring);
+			        $('#loading').html(data['count'] + " Tweets loaded about "+ querystring +".");
 			    }
 			});
 		}
@@ -94,7 +96,7 @@ https://www.niituniversity.in/"><b>NIIT</b></a>
 		}
 
 		$(document).ready(function(){
-			load_tweets('bjp');
+			load_tweets('Data Science');
 		});
 
 		$('#search').click(function(){
