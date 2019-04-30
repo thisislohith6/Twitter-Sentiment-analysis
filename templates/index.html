@@ -24,7 +24,6 @@
 				<input type="text" id="query">
 				<button class="button button1" id="search">Search</button>
 				<button class="button button2" id="getcsv">Download CSV</button>
-				<div id="loading">Loading...</div>
 				<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 
 			</div>
@@ -66,7 +65,6 @@ https://www.niituniversity.in/"><b>NIIT</b></a>
                     contents+='</div>';
 			        container.html(contents);
 			        $('#query').val(querystring);
-			        $('#loading').html(data['count'] + " Tweets loaded about "+ querystring +".");
 			    }
 			});
 		}
@@ -117,7 +115,7 @@ https://www.niituniversity.in/"><b>NIIT</b></a>
             type: 'pie'
         },
         title: {
-            text: 'last 1000 tweets on '+$('#query').val()
+            text: 'Tweets on'+$('#query').val()
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
